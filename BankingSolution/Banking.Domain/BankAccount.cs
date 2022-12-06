@@ -8,6 +8,18 @@
             _balance += amountToDeposit;
         }
 
+        public void Withdraw(decimal amountToWithdraw)
+        {
+            if (amountToWithdraw > _balance)
+            {
+                throw new OverdraftException();
+            }
+            else
+            {
+                _balance -= amountToWithdraw;
+            }
+        }
+
         public decimal getBalance()
         {
             return _balance;
