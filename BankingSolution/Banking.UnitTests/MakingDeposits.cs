@@ -4,11 +4,11 @@ namespace Banking.UnitTests
 {
     public class MakingDeposits
     {
-        [Fact]
-        public void MakingDepositsIncreasesBalances() {
+        [Theory]
+        [InlineData(100)]
+        public void MakingDepositsIncreasesBalances(decimal amountToDeposit) {
             var account = new BankAccount();
             var openingBalance = account.getBalance();
-            var amountToDeposit = 100M;
 
             account.Deposit(amountToDeposit);
 

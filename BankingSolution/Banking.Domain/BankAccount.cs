@@ -10,7 +10,7 @@
 
         public decimal getBalance()
         {
-            return 5000;
+            return _balance;
         }
     }
 }
