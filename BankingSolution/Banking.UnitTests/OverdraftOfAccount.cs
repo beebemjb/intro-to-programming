@@ -1,4 +1,5 @@
 ﻿using Banking.Domain;
+using Banking.UnitTests.TestDoubles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Banking.UnitTests
         [Fact]
         public void CanTakeAllTheMoney()
         {
-            var account = new BankAccount();
+            var account = new BankAccount(new DummyBonusCalculator());
 
             account.Withdraw(account.getBalance());
 
@@ -23,7 +24,7 @@ namespace Banking.UnitTests
         [Fact]
         public void OverdraftDoesNotDecreaseTheBalance()
         {
-            var account = new BankAccount();
+            var account = new BankAccount(new DummyBonusCalculator());
             var openingBalance = account.getBalance();
             var amountToWithDraw = openingBalance + .01M;
 
@@ -44,7 +45,7 @@ namespace Banking.UnitTests
         [Fact]
         public void OverdraftThrowsAnOverdraftException()
         {
-            var account = new BankAccount();
+            var account = new BankAccount(new DummyBonusCalculator());
 
             Assert.Throws<OverdraftException>(() =>
             {
