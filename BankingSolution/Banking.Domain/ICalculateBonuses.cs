@@ -1,7 +1,6 @@
-﻿namespace Banking.Domain
+﻿namespace Banking.Domain;
+
+public interface ICalculateBonuses
 {
-    public interface ICalculateBonuses
-    {
-        decimal GetBonusForDepositOn(decimal currentBalance, decimal amountToDeposit);
-    }
+    decimal GetBonusForDepositOn(decimal currentBalance, decimal amountOfDeposit);
 }

@@ -1,27 +1,29 @@
-﻿using Banking.Domain;
+﻿
+
 using Banking.UnitTests.TestDoubles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Banking.UnitTests
+namespace Banking.UnitTests;
+
+public class GoldAccountBenefits
 {
-    public class GoldAccountBenefits
+    [Fact]
+    public void GetBonusOnDeposit()
     {
-        [Fact]
-        public void GetBonusOnDeposit()
-        {
 
-            var account = new BankAccount(new DummyBonusCalculator());
-            var openingBalance = account.getBalance();
-            var amountToDeposit = 100M;
-            var expectedBonus = 10M;
+        // Given
+        var stubbedBonusCalculator = new Mock<ICalculateBonuses>();
+        var account = new BankAccount(stubbedBonusCalculator.Object, new Mock<INotifyAccountReps>().Object);
+        var openingBalance = account.GetBalance();
+        var amountToDeposit = 92.42M;
+        var expectedBonus = 42M;
+        stubbedBonusCalculator.Setup(s => s.GetBonusForDepositOn(openingBalance, amountToDeposit)).Returns(expectedBonus);
 
-            account.Deposit(amountToDeposit);
+        // When
+        account.Deposit(amountToDeposit);
 
-            Assert.Equal(openingBalance + amountToDeposit + expectedBonus, account.getBalance());
-        }
+        // Then
+        Assert.Equal(openingBalance + amountToDeposit + expectedBonus, 
+            account.GetBalance());
+
     }
 }

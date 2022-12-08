@@ -2,13 +2,11 @@
 {
     public class StandardBonusCalculator : ICalculateBonuses
     {
-        public StandardBonusCalculator()
-        {
-        }
 
-        public decimal GetBonusForDepositOn(decimal currentBalance, decimal amountToDeposit)
+
+        public decimal GetBonusForDepositOn(decimal currentBalance, decimal amountOfDeposit)
         {
-            return currentBalance >= 5000 ? amountToDeposit * .10M : 0;
+            return currentBalance >= 5000 ? amountOfDeposit * .05M : 0;
         }
     }
 }

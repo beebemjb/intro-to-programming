@@ -12,9 +12,9 @@ namespace Banking.UnitTests
     {
         public void HaveTheCorrectOpeningBalance()
         {
-            var account = new BankAccount(new DummyBonusCalculator());
+            var account = new BankAccount(new Mock<ICalculateBonuses>().Object, new Mock<INotifyAccountReps>().Object);
 
-            decimal balance = account.getBalance();
+            decimal balance = account.GetBalance();
 
             Assert.Equal(5000M, balance);
         }

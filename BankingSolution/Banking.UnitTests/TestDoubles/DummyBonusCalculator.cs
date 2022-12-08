@@ -1,17 +1,11 @@
-﻿using Banking.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
-namespace Banking.UnitTests.TestDoubles
+namespace Banking.UnitTests.TestDoubles;
+
+public class DummyBonusCalculator : ICalculateBonuses
 {
-    internal class DummyBonusCalculator : ICalculateBonuses
+    public decimal GetBonusForDepositOn(decimal currentBalance, decimal amountOfDeposit)
     {
-        public decimal GetBonusForDepositOn(decimal currentBalance, decimal amountToDeposit)
-        {
-            return 0;
-        }
+        return 0;
     }
 }
